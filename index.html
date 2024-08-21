@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS CLI Email Management Commands</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        pre {
+            background: #333;
+            color: #fff;
+            padding: 10px;
+            overflow-x: auto;
+        }
+        .command-section {
+            margin-bottom: 20px;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AWS CLI Email Management Commands</h1>
+
+        <div class="command-section">
+            <h2>Create an Email Template</h2>
+            <p>To create a new email template:</p>
+            <pre>aws ses create-template --cli-input-json file://email_template.json</pre>
+        </div>
+
+        <div class="command-section">
+            <h2>Update an Existing Email Template</h2>
+            <p>To update an existing email template:</p>
+            <pre>aws ses update-template --cli-input-json file://email_template.json</pre>
+        </div>
+
+        <div class="command-section">
+            <h2>Delete an Email Template</h2>
+            <p>To delete an email template:</p>
+            <pre>aws ses delete-template --template-name "MyNewTemplate"</pre>
+        </div>
+
+        <div class="command-section">
+            <h2>List All Email Templates</h2>
+            <p>To list all the email templates you have created:</p>
+            <pre>aws ses list-templates</pre>
+        </div>
+
+        <div class="command-section">
+            <h2>Get the Details of a Specific Template</h2>
+            <p>To retrieve the details of a specific email template:</p>
+            <pre>aws ses get-template --template-name "MyNewTemplate"</pre>
+        </div>
+
+        <div class="command-section">
+            <h2>Send an Email Using a Template</h2>
+            <p>To send an email using a template:</p>
+            <pre>aws ses send-templated-email --source "your-email@example.com" --destination "ToAddresses=recipient@example.com" --template "MyNewTemplate" --template-data '{{"name":"Recipient Name"}}'</pre>
+        </div>
+
+        <div class="command-section">
+            <h2>Verify an Email Address</h2>
+            <p>Before sending emails, you need to verify your email address if you're in the SES sandbox:</p>
+            <pre>aws ses verify-email-identity --email-address "your-email@example.com"</pre>
+        </div>
+
+        <div class="command-section">
+            <h2>List Verified Email Addresses</h2>
+            <p>To list all email addresses that are verified in your SES account:</p>
+            <pre>aws ses list-identities --identity-type EmailAddress</pre>
+        </div>
+
+        <div class="command-section">
+            <h2>Send a Test Email</h2>
+            <p>To send a simple test email (without using a template):</p>
+            <pre>aws ses send-email --from "your-email@example.com" --destination "ToAddresses=recipient@example.com" --message 'Subject={{Data=Test Email}},Body={{Text={{Data=This is a test email}}}}'</pre>
+        </div>
+
+        <div class="command-section">
+            <h2>Create a Custom Verification Email Template</h2>
+            <p>If you want to create a custom verification email template:</p>
+            <pre>aws ses create-custom-verification-email-template --cli-input-json file://custom_verification_template.json</pre>
+        </div>
+
+        <div class="command-section">
+            <h2>Send a Custom Verification Email</h2>
+            <p>To send a custom verification email:</p>
+            <pre>aws ses send-custom-verification-email --email-address "recipient@example.com" --template-name "MyCustomVerificationTemplate"</pre>
+        </div>
+
+        <div class="command-section">
+            <h2>Delete a Custom Verification Email Template</h2>
+            <p>To delete a custom verification email template:</p>
+            <pre>aws ses delete-custom-verification-email-template --template-name "MyCustomVerificationTemplate"</pre>
+        </div>
+
+        <div class="command-section">
+            <h2>List Custom Verification Email Templates</h2>
+            <p>To list all custom verification email templates:</p>
+            <pre>aws ses list-custom-verification-email-templates</pre>
+        </div>
+    </div>
+
+    <footer>
+        AWS CLI Email Management | &copy; 2024
+    </footer>
+</body>
+</html>
